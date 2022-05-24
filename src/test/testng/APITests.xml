@@ -1,0 +1,12 @@
+<suite name="Suite1" verbose="1" parallel="classes">
+    <parameter name="username" value="dimana.ivanova"/>
+    <parameter name="password" value="Dimana.97"/>
+    <parameter name="email" value="dimana@test.com"/>
+    <parameter name="birthDate" value="20.03.1997"/>
+    <parameter name="publicInfo" value="Automation QA"/>
+    <test name="Regression">
+        <classes>
+            <class name="apitests.APITests"/>
+        </classes>
+    </test>
+</suite>
