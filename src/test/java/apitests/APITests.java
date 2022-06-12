@@ -10,6 +10,12 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Date;
+import java.util.Properties;
+
 import static org.hamcrest.Matchers.*;
 
 public class APITests {
@@ -22,6 +28,43 @@ public class APITests {
 //    @Parameters({"username", "password", "email", "birthDate", "publicInfo"})
 //    public void register(String username, String password, String email, String birthDate, String publicInfo) throws JsonProcessingException {
 //        UserCredentials registerBody = new UserCredentials();
+//
+////        Set unique username using Date class
+////        Date date = new Date();
+////        registerBody.setUsername(username + date.getTime());
+//
+//
+//        registerBody.setUsername(username);
+//        registerBody.setPassword(password);
+//        registerBody.setEmail(email);
+//        registerBody.setBirthDate(birthDate);
+//        registerBody.setPublicInfo(publicInfo);
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        String convertedJSON = objectMapper.writeValueAsString(registerBody);
+//
+//        baseURI = "http://training.skillo-bg.com:3100";
+//
+//        given()
+//                .header("Content-Type", "application/json")
+//                .body(convertedJSON)
+//                .when()
+//                .post("/users")
+//                .then()
+//                .log()
+//                .all();
+//    }
+
+    //    Register a user (This would throw an error "username already used" due to the DELETE /user/userId endpoint not deleting the user)
+//    @BeforeClass
+//    @Parameters({"username", "password", "email", "birthDate", "publicInfo"})
+//    public void register(String username, String password, String email, String birthDate, String publicInfo) throws JsonProcessingException {
+//        UserCredentials registerBody = new UserCredentials();
+//
+////        Set unique username using Date class
+////        Date date = new Date();
+////        registerBody.setUsername(username + date.getTime());
+//
 //
 //        registerBody.setUsername(username);
 //        registerBody.setPassword(password);
@@ -46,11 +89,22 @@ public class APITests {
 
     @BeforeTest
     @Parameters({"username", "password"})
-    public void loginTest(String username, String password) throws JsonProcessingException {
+    public void loginTest(String username, String password) throws IOException {
         //Create new LoginPOJO with the credentials for the login
         LoginPOJO login = new LoginPOJO();
         login.setUsernameOrEmail(username);
         login.setPassword(password);
+
+//        Reading string from file
+
+//        FileReader reader = new FileReader("credential.properties");
+//        Properties properties = new Properties();
+//
+//        properties.load(reader);
+//
+//        System.out.println(properties.getProperty("username"));
+//        System.out.println(properties.getProperty("password"));
+
 
         //Convert POJO object to JSON
         ObjectMapper objectMapper = new ObjectMapper();
@@ -156,7 +210,6 @@ public class APITests {
 
     @Test (priority = 6)
     public void createPost() throws JsonProcessingException {
-        baseURI = "http://training.skillo-bg.com:3100";
 
         PostPOJO createPostBody = new PostPOJO();
         createPostBody.setCaption("Burgas");
@@ -175,7 +228,7 @@ public class APITests {
                 .then()
                 .statusCode(201)
                 .assertThat().body(notNullValue())
-                .body("id", notNullValue())
+                .assertThat().body("id", notNullValue())
                 .body("caption", equalTo(createPostBody.getCaption()))
                 .body("coverUrl", equalTo(createPostBody.getCoverUrl()))
                 .body("postStatus", equalTo(createPostBody.getPostStatus()))
@@ -193,6 +246,9 @@ public class APITests {
 
         ObjectMapper objectMapper = new ObjectMapper();
         String convertedJSON = objectMapper.writeValueAsString(editPostBody);
+
+        System.out.println(editPostBody.getCaption());
+        System.out.println(editPostBody.getPostStatus());
 
         given()
                 .header("Content-Type", "application/json")

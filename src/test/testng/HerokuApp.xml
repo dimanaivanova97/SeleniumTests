@@ -1,0 +1,22 @@
+<suite name="Suite" verbose="1" parallel="classes">
+    <test name="Regression1">
+        <classes>
+<!--            <class name="selenium.herokuapp.BasicAuth"/>-->
+<!--            <class name="selenium.herokuapp.AddRemoveElements"/>-->
+<!--            <class name="selenium.herokuapp.ChallengingDOM"/>-->
+<!--            <class name="selenium.herokuapp.Checkboxes"/>-->
+<!--            <class name="selenium.herokuapp.ContextMenu"/>-->
+<!--            <class name="selenium.herokuapp.DynamicContent"/>-->
+<!--            <class name="selenium.herokuapp.RedirectLink"/>-->
+<!--            <class name="selenium.herokuapp.MultipleWindows"/>-->
+<!--            <class name="selenium.herokuapp.Hovers"/>-->
+<!--            <class name="selenium.herokuapp.FloatingMenu"/>-->
+<!--            <class name="selenium.herokuapp.DynamicLoading"/>-->
+<!--            <class name="selenium.herokuapp.DynamicControls"/>-->
+<!--            <class name="selenium.herokuapp.DynamicContent"/>-->
+<!--            <class name="selenium.herokuapp.Dropdown"/>-->
+<!--            <class name="selenium.herokuapp.DragAndDrop"/>-->
+<!--            <class name="selenium.herokuapp.DisappearingElements"/>-->
+        </classes>
+    </test>
+</suite>
