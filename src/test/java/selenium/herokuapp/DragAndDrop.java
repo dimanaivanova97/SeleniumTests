@@ -34,13 +34,12 @@ public class DragAndDrop {
     public void navigateToDragAndDrop(){
         driver.get("https://the-internet.herokuapp.com/");
 
-        WebElement contextMenuLink = driver.findElement(By.xpath("//a[@href='/drag_and_drop']"));
-        contextMenuLink.click();
+        WebElement dragAndDropLink = driver.findElement(By.xpath("//a[@href='/drag_and_drop']"));
+        dragAndDropLink.click();
 
         WebElement header = driver.findElement(By.xpath("//div[@class='example']//h3"));
-        WebElement overview = driver.findElement(By.xpath("//div[@class='example']//p"));
         Assert.assertTrue(header.isDisplayed());
-        Assert.assertTrue(overview.isDisplayed());
+        Assert.assertEquals(header.getText(), "Drag and Drop");
     }
 
     @Test(priority = 2)
@@ -53,7 +52,7 @@ public class DragAndDrop {
         WebElement secondBox = driver.findElement(By.id("column-b"));
         WebElement headerFirstBox = driver.findElement(By.xpath("//div[@id='column-a']//header"));
         WebElement headerSecondBox = driver.findElement(By.xpath("//div[@id='column-b']//header"));
-        actions.dragAndDrop(firstBox, secondBox).build().perform();
+        actions.dragAndDrop(secondBox, firstBox).perform();
 
         WebElement headerFirstBoxAfterDragAndDrop = driver.findElement(By.xpath("//div[@id='column-a']//header"));
         WebElement headerSecondBoxAfterDragAndDrop = driver.findElement(By.xpath("//div[@id='column-b']//header"));

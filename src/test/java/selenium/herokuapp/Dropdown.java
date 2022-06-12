@@ -41,9 +41,7 @@ public class Dropdown {
         dropdownLink.click();
 
         WebElement header = driver.findElement(By.xpath("//div[@class='example']//h3"));
-        WebElement overview = driver.findElement(By.xpath("//div[@class='example']//p"));
         Assert.assertTrue(header.isDisplayed());
-        Assert.assertTrue(overview.isDisplayed());
     }
 
     @Test(priority = 2)
